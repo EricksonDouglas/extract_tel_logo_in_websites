@@ -13,7 +13,10 @@ class CialdnbSpider(Spider):
     def start_requests(self) -> [{}]:
         urls: list = list(map(lambda x: x.replace('\n', ''), stdin.readlines()))
         for url in urls:
-            yield Request(url=url, callback=self.parse)
+            yield Request(url=url, callback=self.parse,
+                          headers={'Cache-Control': 'no-cache',
+                                   "User-Agent": 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like'
+                                                 ' Gecko) Chrome/74.0.3729.169 Safari/537.36'})
 
     def parse(self, response):
         _response: str = self.re_sub(response.text, pattern=r"<script..*</script>")
