@@ -11,7 +11,6 @@ $ docker build -t cialdnb .
 ```
 $ cat urls.txt | docker run -i cialdnb 
 ```
-ou
 ```
 $ cat urls.txt | docker run -i cialdnb > output.json 
 ```
