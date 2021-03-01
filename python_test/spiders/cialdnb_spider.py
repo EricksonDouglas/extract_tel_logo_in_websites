@@ -3,14 +3,14 @@ import python_test.utils.libregex as rust
 from sys import stdin
 
 
-RE_PHONE: r'' = r"(((\d{1,4})|(\(\d{1,5}\)))(-| )((\d{1,5})|(\(\d{1,5}\)))(-| )(\d{1,5})(-\d{1,5}| \d{1,5}| )*.)</"
-RE_LOGO: r'' = r'"((\S*)(/|-|_)(\w*)(.png|.svg|.jpeg|.jpg))"'
+RE_PHONE: str = r"(((\d{1,4})|(\(\d{1,5}\)))(-| )((\d{1,5})|(\(\d{1,5}\)))(-| )(\d{1,5})(-\d{1,5}| \d{1,5}| )*.)</"
+RE_LOGO: str = r'"((\S*)(/|-|_)(\w*)(.png|.svg|.jpeg|.jpg))"'
 
 
 class CialdnbSpider(Spider):
     name = "cialdnb"
 
-    def start_requests(self) -> [{}]:
+    def start_requests(self) -> list:
         urls: list = list(map(lambda x: x.replace('\n', ''), stdin.readlines()))
         for url in urls:
             yield Request(url=url, callback=self.parse,
